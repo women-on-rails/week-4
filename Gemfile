@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
-ruby '2.1.3'
-gem 'rails', '4.2.5.1' # Rails framework, with specific version
+ruby '2.3.1'
+gem 'rails' # Rails framework, with specific version
 gem 'puma' # HTTP 1.1 server 
 gem 'sqlite3' # database
 gem 'sass-rails' # RoR integration of Sass stylesheet language (CSS)

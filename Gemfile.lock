@@ -152,11 +152,14 @@ DEPENDENCIES
   pry-byebug
   pry-rails
   puma
-  rails (= 4.2.5.1)
+  rails
   rails_12factor
   sass-rails
   spring
   sqlite3
 
+RUBY VERSION
+   ruby 2.3.1p112
+
 BUNDLED WITH
-   1.10.6
+   1.12.5
