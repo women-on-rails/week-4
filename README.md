@@ -45,9 +45,41 @@ Vous voila prête pour l'exercice !
 
 # Étape 2 : Lire l'exercice et se lancer
 
-Ouvrez votre projet week-3 avec l'éditeur que vous utilisez. 
+### S'essayer à la console
+
+
+### Application au projet Curiosités
+
+Ouvrez votre projet week-4 avec l'éditeur que vous utilisez.
 Si vous utilisez SublimeText, vous pouvez faire ````subl .```` dans la console pour ouvrir directement votre projet. 
 (````subl```` c'est SublimeText, l'espace c'est parce que la commande est finie, et le point c'est pour dire "ouvre dans Sublime Text tout le dossier dans lequel je suis, en un coup").
+
+Ouvrez le controleur ````curiosities_controller````. Il y a la méthode ````index```` qui correspond à vue ````index.html.erb```` affichant la liste des curiosités.
+
+Dans cette méthode, vous allez récupérer toutes les curiosités stockées en base de donnée avec le modèle ````Curiosity````:
+
+```Ruby
+@curiosities = Curiosity.all
+````
+
+Cela définie la variable ````curiosities```` contenant le tableau des objets ````Curiosity```` contenus en base de donnée.
+
+> Important :
+> Un objet ````Curiosity```` est composé d'un nom (````name````), d'une description (````description````), d'une url pour une image (````image_url````) et d'un texte relatif à l'image (````image_text````).
+
+Cette variable est passée du controleur à la vue et peut donc etre utilisée dans ````index.html.erb````.
+
+Ouvrez la vue ````index.html.erb```` et modifiez la pour remplacer le texte de vos curiosités par les données contenues dans chaque objet ````Curiosity````.
+
+Pour injecter du code Ruby dans une page HTML, il faut l'entourer de ````<%=```` et ````%>````.
+
+Voici un exemple :
+
+``` Ruby
+ <%= @curiosities[0].name %> # affiche le nom de la curiosité 0 dans la vue
+````
+
+À vous de jouer !
 
 # Étape 3 : Enregistrer les modifications sur le répertoire distant
 
@@ -96,4 +128,10 @@ git push
 Allez voir sur github, vos modifications apparaitront :)
 
 # Pour aller plus loin :
-
+- En savoir plus sur les controleurs : http://guides.rubyonrails.org/action_controller_overview.html ou
+- Les conditions : https://www.grafikart.fr/formations/apprendre-ruby/conditions
+- Les boucles : https://www.grafikart.fr/formations/apprendre-ruby/loops
+- Les méthodes : https://www.grafikart.fr/formations/apprendre-ruby/method
+- Les classes et instances : https://www.grafikart.fr/formations/apprendre-ruby/poo-objet
+- Tableaux, hashes et symboles : https://www.grafikart.fr/formations/apprendre-ruby/array-hash ou https://zestedesavoir.com/tutoriels/634/une-introduction-a-ruby/497_les-bases/2490_les-tableaux/
+- Les booléens : http://www.tonyryudev.com/joomla3/index.php/menu-mes-developpements/menu-cours-ruby-rgss/4-ruby-cours-n-3-les-booleens-et-les-calculs-logiques
