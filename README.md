@@ -65,21 +65,64 @@ Dans cette méthode, vous allez récupérer toutes les curiosités stockées en 
 Cela définie la variable ````curiosities```` contenant le tableau des objets ````Curiosity```` contenus en base de donnée.
 
 > Important :
-> Un objet ````Curiosity```` est composé d'un nom (````name````), d'une description (````description````), d'une url pour une image (````image_url````) et d'un texte relatif à l'image (````image_text````).
+> Un objet ````Curiosity```` est composé d'un identifiant (````id````), d'un nom (````name````), d'une description (````description````), d'une url pour une image (````image_url````) et d'un texte relatif à l'image (````image_text````).
+
+Afficher une curiosité dans la console (````rails c````) donnera ceci :
+``` Ruby
+> curiosities = Curiosity.all
+> curiosities[0]
+=> #<Curiosity:0x007fd37090f920
+ id: 1,
+ name: "Joli mug",
+ description: "Reçu au Japon, lors d'un congrès interlitières",
+ image_url:
+  "https://s-media-cache-ak0.pinimg.com/236x/4a/86/bf/4a86bfbf02b472e5b385762b8f267a91.jpg",
+ image_text: "Un grand mug de lait pour bien commencer la journée",
+ created_at: Sat, 18 Jun 2016 17:54:37 UTC +00:00,
+ updated_at: Sat, 18 Jun 2016 17:54:37 UTC +00:00>
+````
 
 Cette variable est passée du controleur à la vue et peut donc etre utilisée dans ````index.html.erb````.
 
 Ouvrez la vue ````index.html.erb```` et modifiez la pour remplacer le texte de vos curiosités par les données contenues dans chaque objet ````Curiosity````.
 
-Pour injecter du code Ruby dans une page HTML, il faut l'entourer de ````<%=```` et ````%>````.
+Pour injecter et interpréter du code Ruby dans une page HTML, il faut l'entourer de ````<%```` et ````%>````.
+Si vous souhaitez afficher une valeur, il faut l'entourer de ````<%=```` et ````%>````.
 
-Voici un exemple :
+Voici des exemples :
 
 ``` Ruby
- <%= @curiosities[0].name %> # affiche le nom de la curiosité 0 dans la vue
+ <% @cusiosities = Curiosity.all %> # Définie une variable 
+ <%= @curiosities[0].name %> # Affiche le nom de la curiosité 0 dans la vue
+````
+
+Et enfin, pour parcourir le tableau des curiosités, vous pouvez utiliser une boucle ````each```` : 
+``` Ruby
+<% @curiosities.each do |curiosity| %> # Définie le début de la boucle => affiche le nom pour chaque élément du tableau
+ <div> 
+   <%= @curiosity.name
+ </div>
+<%= end %> # Détermine la fin de la boucle
 ````
 
 À vous de jouer !
+
+### Lancer le serveur sur lequel va tourner l'application
+
+En premier lieu, vérifiez que votre application a tous les plug-ins qu'elle utilise à disposition : vous pouvez les installer automatiquement en faisant la commande ````bundle install```` dans votre console, à l'intérieur du dossier de votre projet ````week-4````. 
+
+Si un problème survient au niveau de la version de ruby, vous devriez avoir besoin d'effectuer la commande ````rbenv install 2.3.1```` dans la console pour installer la version de ruby dont l'application a besoin. 
+(Si rbenv ne connait pas cette version, utilisez la commande ````brew update && brew upgrade ruby-build```` avant)
+Puis, installez bundler pour cette version avec la commande ````gem install bundle````. Et enfin, faites un ````bundle update````pour mettre a jour vos plug-ins. 
+
+Pour lancer un serveur Ruby On Rails, vous devez faire la commande ````rails server```` (ou ````rails s````) toujours dans votre console. 
+Et voila, votre serveur est lancé !
+
+### Visualiser l'application sur le navigateur
+
+Apres avoir lancé votre serveur, vous pourrez ouvrir votre navigateur pour y coller l'URL suivante : http://localhost:3000/
+Vous devriez visualiser le contenu de la vue que vous avez ouverte précédement. 
+Apres avoir fait des modifications sur cette vue, vous n'aurez qu'à recharger la page du navigateur pour voir vos modifications apparaître. (rafraichir: F5 ou ````CTRL + R```` sous windows, ````CMD + R```` sous mac)
 
 # Étape 3 : Enregistrer les modifications sur le répertoire distant
 
