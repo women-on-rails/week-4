@@ -47,6 +47,8 @@ Vous voila prête pour l'exercice !
 
 ### S'essayer à la console et manipuler ruby
 
+[Retrouvez les slides du cours](http://slides.com/soniaprevost/womenonrails-week4#/)
+
 Ouvrez une console ruby en tapant ```irb``` dans votre terminal et maintenant passons aux exercices !
 
 1. **Appliquez des méthodes préconstruites sur une variable**
