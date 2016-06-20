@@ -51,36 +51,42 @@ Ouvrez une console ruby en tapant ```irb``` dans votre terminal et maintenant pa
 
 1. **Appliquez des méthodes préconstruites sur une variable**
 
-  Déclarez une variable avec une string à l'intérieur comme ceci par exemple :
+  Déclarez une variable avec une `String` (un texte est une suite de lettres, une "chaîne de caractères", que nous appellerons String) à l'intérieur comme ceci par exemple :
   ``` Console
   hello = 'hello, world!'
   ```
 
   Trouvez et appliquez *les* méthodes qui vont mettre en majuscule toute la string et la séparer en plusieurs parties.
 
-  Un principe intéressant de ruby, c'est que vous pouvez **chainer** vos méthodes. Cela vous permet d'appliquer en une seule ligne toutes les méthodes pour transformer la string. Par exemple : ```hello.upcase.size```.
+  Un principe intéressant de ruby, c'est que vous pouvez **enchaîner** vos méthodes. Cela vous permet d'appliquer en une seule ligne toutes les méthodes pour transformer la String. Par exemple : ```hello.upcase.size```.
 
-  N'hésitez pas à chercher dans la doc Ruby toute opération susceptible de changer la string.
+  N'hésitez pas à chercher dans la doc Ruby toute opération que vous pouvez faire quand vous avez une String à disposition.
 
-  Essayez aussi avec des integer.
+  Essayez aussi avec des Integer (nombres entiers).
 
 2. **Utilisez .each sur un array**
 
-  Définissez un array et jouez l'itérateur .each.
+  Définissez un `Array` (tableau, ou liste d'éléments) et jouez l'itérateur `.each`.
 
-  Pour rappel, un array se définit comme ceci :
+  Un Array peut se définir de nombreuses façons, par exemple :
   ``` Console
-  array = [element1, element2, element3]
+  tableau1 = ["Salut", "apprenties", "développeuses"]
+
+  element1 = 'Bonjour'
+  element2 = 'les'
+  element3 = 'Rubyistes'
+  tableau2 = [element1, element2, element3]
   ```
 
   Et voici la syntaxe de la boucle **each**
   ``` Console
-  array.each do |element|
-    écrire ce que vous voulez appliquer sur chacun des éléments de l'array
+  tableau1.each do |element|
+    # écrire ce que vous voulez faire avec chacun des éléments du tableau
+    element.upcase
   end
   ```
 
-  Allez voir dans la doc ruby des enumerable ce que vous pouvez faire sur un array.
+  Allez voir dans la doc ruby des Enumerable ce que vous pouvez faire avec toutes les listes (Array entre autres).
 
 3. **Écrivez une méthode et utilisez-là avec différents arguments**
 
@@ -88,17 +94,22 @@ Ouvrez une console ruby en tapant ```irb``` dans votre terminal et maintenant pa
 
   Pour rappel, une méthode se déclare comme ceci:
   ``` Console
-  def method_name(parameter1, parameter2)
-    écrire ce que la méthod fait
+  def nom_methode(parameter1, parameter2)
+    # écrire ce que la méthode fait, par exemple ici faire une chaîne de caractères qui "joint" les deux Strings avec " et "
+    "#{parameter1} et #{parameter2}"
   end
   ```
 
   Et s'appelle dans la console comme ceci:
   ``` Console
-  method_name(argument1, argument2)
+  nom_methode("Découvrir", "s'amuser")
+
+  argument1 = "coder"
+  argument2 = "jouer"
+  nom_methode(argument1, argument2)
   ```
 
-  À votre tour (et n'oubliez pas, Google et Stackoverflow sont vos nouveaux meilleurs amis) !
+  À votre tour (et n'oubliez pas, Google et StackOverflow sont vos nouveaux meilleurs amis) !
 
 4. **Écrivez une classe avec plusieurs méthodes et créez plusieurs instances de cette classe**
 
@@ -135,7 +146,7 @@ Dans cette méthode, vous allez récupérer toutes les curiosités stockées en 
 @curiosities = Curiosity.all
 ````
 
-Cela définie la variable ````curiosities```` contenant le tableau des objets ````Curiosity```` contenus en base de donnée.
+Cela définie la variable ````curiosities```` contenant le tableau des objets de la classe ````Curiosity```` contenus en base de données.
 
 > Important :
 > Un objet ````Curiosity```` est composé d'un identifiant (````id````), d'un nom (````name````), d'une description (````description````), d'une url pour une image (````image_url````) et d'un texte relatif à l'image (````image_text````).
@@ -155,27 +166,27 @@ Afficher une curiosité dans la console (````rails c````) donnera ceci :
  updated_at: Sat, 18 Jun 2016 17:54:37 UTC +00:00>
 ````
 
-Cette variable est passée du controleur à la vue et peut donc etre utilisée dans ````index.html.erb````.
+Cette variable est passée du contrôleur à la vue et peut donc etre utilisée dans ````index.html.erb````.
 
-Ouvrez la vue ````index.html.erb```` et modifiez la pour remplacer le texte de vos curiosités par les données contenues dans chaque objet ````Curiosity````.
+Ouvrez la vue ````index.html.erb```` et modifiez-la pour remplacer le texte de vos curiosités par les données contenues dans chaque objet ````Curiosity````.
 
-Pour injecter et interpréter du code Ruby dans une page HTML, il faut l'entourer de ````<%```` et ````%>````.
-Si vous souhaitez afficher une valeur, il faut l'entourer de ````<%=```` et ````%>````.
+Pour interpréter du code Ruby sans rien afficher dans votre page HTML, il faut entourer le code avec ````<%```` et ````%>````.
+Si vous souhaitez afficher le résultat, il faut l'entourer de ````<%=```` et ````%>````.
 
 Voici des exemples :
 
 ``` Ruby
- <% @cusiosities = Curiosity.all %> # Définie une variable 
- <%= @curiosities[0].name %> # Affiche le nom de la curiosité 0 dans la vue
+ <% @cusiosities = Curiosity.all %> # Remplit la variable @curiosities avec toutes les Curiosités 
+ <%= @curiosities[0].name %> # Affiche le nom de la curiosité 0 (la première de la liste) dans la vue
 ````
 
 Et enfin, pour parcourir le tableau des curiosités, vous pouvez utiliser une boucle ````each```` : 
 ``` Ruby
-<% @curiosities.each do |curiosity| %> # Définie le début de la boucle => affiche le nom pour chaque élément du tableau
+<% @curiosities.each do |curiosity| # Définit le début de la boucle %>
  <div> 
-   <%= @curiosity.name
+   <%= @curiosity.name # affiche le nom pour chaque élément du tableau %>
  </div>
-<%= end %> # Détermine la fin de la boucle
+<% end %> # Détermine la fin de la boucle
 ````
 
 À vous de jouer !
@@ -195,7 +206,7 @@ Et voila, votre serveur est lancé !
 
 Apres avoir lancé votre serveur, vous pourrez ouvrir votre navigateur pour y coller l'URL suivante : http://localhost:3000/
 Vous devriez visualiser le contenu de la vue que vous avez ouverte précédement. 
-Apres avoir fait des modifications sur cette vue, vous n'aurez qu'à recharger la page du navigateur pour voir vos modifications apparaître. (rafraichir: F5 ou ````CTRL + R```` sous windows, ````CMD + R```` sous mac)
+Apres avoir fait des modifications sur cette vue, vous n'aurez qu'à recharger la page du navigateur pour voir vos modifications apparaître. (rafraichir: ````F5```` ou ````CTRL + R```` sous windows, ````CMD + R```` sous mac)
 
 # Étape 3 : Enregistrer les modifications sur le répertoire distant
 
