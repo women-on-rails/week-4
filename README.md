@@ -90,9 +90,7 @@ Ouvrez une console ruby en tapant ```irb``` dans votre terminal et maintenant pa
 
 3. **Écrivez une méthode et utilisez-là avec différents arguments**
 
-  Imaginez une méthode qui donne la somme de 2 paramètres.
-
-  Pour rappel, une méthode se déclare comme ceci:
+  Une méthode se déclare comme suit. Par exemple pour fusionner deux textes en une phrase :
   ``` Console
   def nom_methode(parameter1, parameter2)
     # écrire ce que la méthode fait, par exemple ici faire une chaîne de caractères qui "joint" les deux Strings avec " et "
@@ -107,6 +105,14 @@ Ouvrez une console ruby en tapant ```irb``` dans votre terminal et maintenant pa
   argument1 = "coder"
   argument2 = "jouer"
   nom_methode(argument1, argument2)
+  ```
+
+  Maintenant, imaginez une méthode qui donne la somme de 2 paramètres, si ces paramètres sont entiers.
+  ``` Console
+  def somme # à vous de définir les paramètres
+    # à vous de définir le code
+  end
+  somme # à vous d'appeler somme avec plusieurs valeurs pour voir si ça marche
   ```
 
   À votre tour (et n'oubliez pas, Google et StackOverflow sont vos nouveaux meilleurs amis) !
