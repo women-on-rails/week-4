@@ -45,8 +45,81 @@ Vous voila prête pour l'exercice !
 
 # Étape 2 : Lire l'exercice et se lancer
 
-### S'essayer à la console
+### S'essayer à la console et manipuler ruby
 
+Ouvrez une console ruby en tapant ```irb``` dans votre terminal et maintenant passons aux exercices !
+
+1. **Appliquez des méthodes préconstruites sur une variable**
+
+  Déclarez une variable avec une string à l'intérieur comme ceci par exemple :
+  ``` Console
+  hello = 'hello, world!'
+  ```
+
+  Trouvez et appliquez *les* méthodes qui vont mettre en majuscule toute la string et la séparer en plusieurs parties.
+
+  Un principe intéressant de ruby, c'est que vous pouvez **chainer** vos méthodes. Cela vous permet d'appliquer en une seule ligne toutes les méthodes pour transformer la string. Par exemple : ```hello.upcase.size```.
+
+  N'hésitez pas à chercher dans la doc Ruby toute opération susceptible de changer la string.
+
+  Essayez aussi avec des integer.
+
+2. **Utilisez .each sur un array**
+
+  Définissez un array et jouez l'itérateur .each.
+
+  Pour rappel, un array se définit comme ceci :
+  ``` Console
+  array = [element1, element2, element3]
+  ```
+
+  Et voici la syntaxe de la boucle **each**
+  ``` Console
+  array.each do |element|
+    écrire ce que vous voulez appliquer sur chacun des éléments de l'array
+  end
+  ```
+
+  Allez voir dans la doc ruby des enumerable ce que vous pouvez faire sur un array.
+
+3. **Écrivez une méthode et utilisez-là avec différents arguments**
+
+  Imaginez une méthode qui donne la somme de 2 paramètres.
+
+  Pour rappel, une méthode se déclare comme ceci:
+  ``` Console
+  def method_name(parameter1, parameter2)
+    écrire ce que la méthod fait
+  end
+  ```
+
+  Et s'appelle dans la console comme ceci:
+  ``` Console
+  method_name(argument1, argument2)
+  ```
+
+  À votre tour (et n'oubliez pas, Google et Stackoverflow sont vos nouveaux meilleurs amis) !
+
+4. **Écrivez une classe avec plusieurs méthodes et créez plusieurs instances de cette classe**
+
+  Imaginez une classe qui définirait les caractéristiques de votre animal préféré (Grumpy cat, non ?).
+
+  Pour rappel, une classe ressemble à cela :
+  ``` Console
+  class Animal
+    def roar
+      puts 'Miaougrmphf'
+    end
+  end
+  ```
+
+  Et vous pouvez l'utiliser ainsi :
+  ``` Console
+  grumpy = Animal.new
+  grumpy.roar
+  ```
+
+  Amusez-vous à créer plein de méthodes !
 
 ### Application au projet Curiosités
 
