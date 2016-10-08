@@ -1,19 +1,14 @@
 # Préambule
 
-Ce tutoriel a pour objectif d'expliquer l'architecture de base d'un projet Ruby Ob Rails et de comprendre comment utiliser des plug-ins déjà existants, dans le cadre du cycle 1 des ateliers Women On Rails.
+Ce tutoriel a pour objectif de s'essayer à la console Ruby et de comprendre l'utilisation du langage Ruby dans le projet ``` Curiosities```, dans le cadre du cycle 1 des ateliers Women On Rails.
 
 # Étape 1 : Rappels
 
+## Commandes principales
+
 Vous pouvez retrouver les commandes utiles pour le terminal, git et la console Ruby On Rails [ici](https://women-on-rails.github.io/guide/main_commands).
 
-# Étape 2 : Notions utiles
-
-Ouvrez votre projet avec Cloud9, ou l'éditeur que vous utilisez si vous avez une installation native.
-
-Si vous utilisez SublimeText, vous pouvez faire ````subl .```` dans la console pour ouvrir directement votre projet.
-(````subl```` c'est SublimeText, l'espace c'est parce que la commande est finie, et le point c'est pour dire "ouvre dans Sublime Text tout le dossier dans lequel je suis, en un coup").
-
-### Découvrir l'univers de Ruby en voyageant sur de bonnes Rails
+## Découvrir l'univers de Ruby en voyageant sur de bonnes Rails
 
 Regardez l'architecture du projet.
 Vous devriez voir plusieurs fichiers et dossiers, dont les principaux :
@@ -28,118 +23,197 @@ Si vous ouvrez le dossier ````app````, vous découvrirez les dossiers suivants:
 - vues (````views````) : Elles correspondent à la manière d'afficher les informations à l'utilisateur. Il s'agit généralement d'une combinaison de code HTML et de Ruby dans des fichiers .html.erb.
 - ````assets```` : Ce sont les images, les morceaux de code javascript et les feuilles de style en CSS utilisés dans les vues.
 
-Apres avoir navigué dans les différents dossiers, passons à la pratique !
+# Étape 2 : Lire l'exercice et se lancer
 
-# Étape 3 : 1ère approche de l'application Rails
+Ouvrez votre projet avec Cloud9, ou l'éditeur que vous utilisez si vous avez une installation native.
 
-But: Ajouter à notre application une page d'accueil.
+### S'essayer à la console et manipuler ruby
 
-## Créons notre page vide
+[Retrouvez les slides du cours](http://slides.com/soniaprevost/womenonrails-week4#/)
 
-Tout d'abord, tapez la commande ``` rails generate controller home index ```.
+Ouvrez une console ruby en tapant ```irb``` dans votre terminal et maintenant passons aux exercices !
 
-Cela veut dire que l'on demande à Ruby On Rails de nous créer un controlleur appelé ``` home ``` qui contiendra une méthode ``` index ``` et sa vue associée (``` /home/index.html ```). Nous verrons ces notions plus en détails dans les prochains ateliers du cycle.
+1. **Appliquez des méthodes préconstruites sur une variable**
 
-![Générer home](/images/readme/generator.png)
+  Déclarez une variable avec une `String` (un texte est une suite de lettres, une "chaîne de caractères", que nous appellerons String) à l'intérieur comme ceci par exemple :
+  ``` Console
+  hello = 'hello, world!'
+  ```
 
-Puis, allez dans le fichier ```/config/routes.rb``` et ajoutez la ligne suivante ``` root 'home#index' ``` avant la ligne ``` get 'home/index' ```.
+  Trouvez et appliquez *les* méthodes qui vont mettre en majuscule toute la string et la séparer en plusieurs parties.
 
-![Routes](/images/readme/routes.png)
+  Un principe intéressant de ruby, c'est que vous pouvez **enchaîner** vos méthodes. Cela vous permet d'appliquer en une seule ligne toutes les méthodes pour transformer la String. Par exemple : ```hello.upcase.size```.
 
-Cela permet de faire en sorte que la page de notre application sur laquelle les utilisateurs arrivent soit la page ``` index.html ``` liée au controlleur ``` home ```.
+  N'hésitez pas à chercher dans la doc Ruby toute opération que vous pouvez faire quand vous avez une String à disposition.
 
-Après avoir ajouté ces fichiers à votre application, lancez un serveur Rails avec le bouton ``` Run Project ``` dans votre workspace Cloud9 pour pouvoir visualiser vos changements (ou avec la commande ``` rails server ``` dans votre terminal si vous avez une installation native). L'url à utiliser dans le navigateur sera indiquée dans le terminal.
+  Essayez aussi avec des Integer (nombres entiers).
 
-A ce stade, vous devriez avoir une page qui s'affiche mais qui n'est pas très élaborée.
+2. **Utilisez .each sur un array**
 
-![Page de base](/images/readme/page_navigateur_base.png)
+  Définissez un `Array` (tableau, ou liste d'éléments) et jouez l'itérateur `.each`.
 
-Maintenant, on va y ajouter du contenu et la 'pimper' un peu avec Bootstrap !
+  Un Array peut se définir de nombreuses façons, par exemple :
+  ``` Console
+  tableau1 = ["Salut", "apprenties", "développeuses"]
+
+  element1 = 'Bonjour'
+  element2 = 'les'
+  element3 = 'Rubyistes'
+  tableau2 = [element1, element2, element3]
+  ```
+
+  Et voici la syntaxe de la boucle **each**
+  ``` Console
+  tableau1.each do |element|
+    # écrire ce que vous voulez faire avec chacun des éléments du tableau
+    element.upcase
+  end
+  ```
+
+  Allez voir dans la doc ruby des Enumerable ce que vous pouvez faire avec toutes les listes (Array entre autres).
+
+3. **Écrivez une méthode et utilisez-là avec différents arguments**
+
+  Une méthode se déclare comme suit. Par exemple pour fusionner deux textes en une phrase :
+  ``` Console
+  def nom_methode(parameter1, parameter2)
+    # écrire ce que la méthode fait, par exemple ici faire une chaîne de caractères qui "joint" les deux Strings avec " et "
+    "#{parameter1} et #{parameter2}"
+  end
+  ```
+
+  Et s'appelle dans la console comme ceci:
+  ``` Console
+  nom_methode("Découvrir", "s'amuser")
+
+  argument1 = "coder"
+  argument2 = "jouer"
+  nom_methode(argument1, argument2)
+  ```
+
+  Maintenant, imaginez une méthode qui donne la somme de 2 paramètres, si ces paramètres sont entiers.
+  ``` Console
+  def somme # à vous de définir les paramètres
+    # à vous de définir le code
+  end
+  somme # à vous d'appeler somme avec plusieurs valeurs pour voir si ça marche
+  ```
+
+  À votre tour (et n'oubliez pas, Google et StackOverflow sont vos nouveaux meilleurs amis) !
+
+4. **Écrivez une classe avec plusieurs méthodes et créez plusieurs instances de cette classe**
+
+  Imaginez une classe qui définirait les caractéristiques de votre animal préféré (Grumpy cat, non ?).
+
+  Pour rappel, une classe ressemble à cela :
+  ``` Console
+  class Animal
+    def roar
+      puts 'Miaougrmphf'
+    end
+  end
+  ```
+
+  Et vous pouvez l'utiliser ainsi :
+  ``` Console
+  grumpy = Animal.new
+  grumpy.roar
+  ```
+
+  Amusez-vous à créer plein de méthodes !
+
+### Application au projet Curiosités
+
+[En construction]
+
+Ouvrez votre projet avec l'éditeur que vous utilisez.
+
+> Si vous utilisez SublimeText, vous pouvez faire ````subl .```` dans la console pour ouvrir directement votre projet.
+> (````subl```` c'est SublimeText, l'espace c'est parce que la commande est finie, et le point c'est pour dire "ouvre dans Sublime Text tout le dossier dans lequel je suis, en un coup").
+
+Ecrivez la commande ``` rails generate scaffold curiosities index ``` dans votre terminal.
+
+Cela va générer de nouveaux fichiers dans votre application, dont un controlleur (``` app/controllers/curiosities_controller.rb ```), une vue (``` app/views/curiosities/index.html.erb ```) et un modèle (``` app/models/curiosity.rb ``` ).
+
+Ouvrez le controleur ````curiosities_controller````. Il y a la méthode ````index```` qui correspond à la vue ````index.html.erb```` affichant la liste des curiosités.
+
+Dans cette méthode, vous allez récupérer toutes les curiosités stockées en base de donnée avec le modèle ````Curiosity````:
+
+```Ruby
+@curiosities = Curiosity.all
+````
+
+Cela définie la variable ````curiosities```` contenant le tableau des objets de la classe ````Curiosity```` contenus en base de données.
+
+> Important :
+> Un objet ````Curiosity```` est composé d'un identifiant (````id````), d'un nom (````name````), d'une description (````description````), d'une url pour une image (````image_url````) et d'un texte relatif à l'image (````image_text````).
+
+Afficher une curiosité dans la console (````rails c````) donnera ceci :
+``` Ruby
+> curiosities = Curiosity.all
+> curiosities[0]
+=> #<Curiosity:0x007fd37090f920
+ id: 1,
+ name: "Joli mug",
+ description: "Reçu au Japon, lors d'un congrès interlitières",
+ image_url:
+  "https://s-media-cache-ak0.pinimg.com/236x/4a/86/bf/4a86bfbf02b472e5b385762b8f267a91.jpg",
+ image_text: "Un grand mug de lait pour bien commencer la journée",
+ created_at: Sat, 18 Jun 2016 17:54:37 UTC +00:00,
+ updated_at: Sat, 18 Jun 2016 17:54:37 UTC +00:00>
+````
+
+Cette variable est passée du contrôleur à la vue et peut donc etre utilisée dans ````index.html.erb````.
+
+Ouvrez la vue ````index.html.erb```` et modifiez-la pour remplacer le texte de vos curiosités par les données contenues dans chaque objet ````Curiosity````.
+
+Pour interpréter du code Ruby sans rien afficher dans votre page HTML, il faut entourer le code avec ````<%```` et ````%>````.
+Si vous souhaitez afficher le résultat, il faut l'entourer de ````<%=```` et ````%>````.
+
+Voici des exemples :
+
+``` Ruby
+ <% @cusiosities = Curiosity.all %> # Remplit la variable @curiosities avec toutes les Curiosités
+ <%= @curiosities[0].name %> # Affiche le nom de la curiosité 0 (la première de la liste) dans la vue
+````
+
+Et enfin, pour parcourir le tableau des curiosités, vous pouvez utiliser une boucle ````each```` :
+``` Ruby
+<% @curiosities.each do |curiosity| # Définit le début de la boucle %>
+ <div>
+   <%= curiosity.name # affiche le nom pour chaque élément du tableau %>
+ </div>
+<% end %> # Détermine la fin de la boucle
+````
+
+À vous de jouer !
+
+### Lancer le serveur sur lequel va tourner l'application
+
+En premier lieu, vérifiez que votre application a tous les plug-ins qu'elle utilise à disposition : vous pouvez les installer automatiquement en faisant la commande ````bundle install```` dans votre console, à l'intérieur du dossier de votre projet ````week-4````.
+
+Si un problème survient au niveau de la version de ruby, vous devriez avoir besoin d'effectuer la commande ````rbenv install 2.3.1```` dans la console pour installer la version de ruby dont l'application a besoin.
+(Si rbenv ne connait pas cette version, utilisez la commande ````brew update && brew upgrade ruby-build```` avant)
+Puis, installez bundler pour cette version avec la commande ````gem install bundle````. Et enfin, faites un ````bundle update````pour mettre a jour vos plug-ins.
+
+Pour lancer un serveur Ruby On Rails, vous devez faire la commande ````rails server```` (ou ````rails s````) toujours dans votre console.
+Et voila, votre serveur est lancé !
 
 ### Visualiser l'application sur le navigateur
 
-Apres avoir lancé votre serveur, vous pourrez ouvrir votre navigateur pour y coller l'URL fournie par votre terminal. (généralement http://localhost:3000/ si vous avez une installation native)
+Apres avoir lancé votre serveur, vous pourrez ouvrir votre navigateur pour y coller l'URL suivante : http://localhost:3000/
 Vous devriez visualiser le contenu de la vue que vous avez ouverte précédement.
-Apres avoir fait des modifications sur cette vue et les avoir enregistrées, vous n'aurez qu'à recharger la page du navigateur pour voir vos modifications apparaître.
+Apres avoir fait des modifications sur cette vue, vous n'aurez qu'à recharger la page du navigateur pour voir vos modifications apparaître. (rafraichir: ````F5```` ou ````CTRL + R```` sous windows, ````CMD + R```` sous mac)
 
-Enregistrer avec l'éditeur de texte : ``` CTRL + S ``` sous windows, ``` CMD + S ``` sous mac
-Rafraichir la page web : F5 ou ````CTRL + R```` sous windows, ````CMD + R```` sous mac
-
-## Contenu et style
-
-Ouvrez le fichier ```index.html``` situé dans le dossier ```/app/views/home``` et rajoutez-y le HTML que vous souhaitez.
-
-![Mise à jour HTML](/images/readme/index.png)
-
-Allez regarder sur le navigateur ce que votre page affiche.
-
-![Nouveau contenu](/images/readme/page_navigateur_contenu.png)
-
-Apres avoir ajouté du contenu, passons au style.
-
-[Boostrap](http://getbootstrap.com/) est un ensemble d'outils HTML, CSS et Javascript qui, utilisés, apportent des fonctionalités et une cohérence visuelle "responsive" (adaptée à tout format) à une application.
-
-Nous allons inclure ce framework (bibliothèque de fonctionalités) dans notre application, à l'aide d'un [plug-in Ruby On Rails](https://github.com/seyhunak/twitter-bootstrap-rails),  pour la rendre un peu plus sympa à regarder.
-
-> Astuce : On appelle les plug-ins Ruby On Rails des gems.
-
-Pour cela, ouvrez le fichier ``` gemfile ``` et ajoutez-y la ligne suivante : ``` gem "twitter-bootstrap-rails" ```.
-
-![gemfile](/images/readme/gemfile.png)
-
-> Rappel : N'oubliez pas de sauvegarder régulièrement les fichiers que vous mettez à jour sinon vous ne verrez pas vos changements sur le navigateur.
-
-Ajouter cette gem au gemfile permet d'informer l'application qu'elle devra utiliser cette gem dorenavant. Pour installer la gem, vous devez ensuite lancer la commande ``` bundle install ``` dans votre terminal.
-
-![Bundle install](/images/readme/bundle_install.png)
-
-Puis, tapez la commande ``` rails generate bootstrap:install static ``` dans votre terminal pour créer les assets (images, css et autres) utiles au bon fonctionnement de la gem.
-La gem installée, nous pouvons maintenant l'utiliser.
-
-Ouvrez le fichier ``` /app/views/layouts/application.html.erb ```.
-
-![Layout sans bootstrap](/images/readme/application_sans_bootstrap.png)
-
-Ce fichier est le "layout" de notre application. C'est à dire qu'il s'occupe de la mise en page générale utilisée par toutes les pages de l'application.
-
-> Important : Dans le fichier ``` /app/views/layouts/application.html.erb ```, le contenu des pages de l'application est inclus grace à la ligne ``` <%= yield %> ```.
-
-Dans votre terminal, tapez la commande suivante : ``` rails g bootstrap:layout application ```.
-Le navigateur vous demandera confirmation, tapez ``` Y ``` (pour ``` yes ```).
-
-![Generateur Bootstrap](/images/readme/commande_layout.png)
-
-Cette action permet d'appliquer le formattage de Bootstrap sur le fichier ``` /app/views/layouts/application.html.erb ```.
-
-![Layout avec bootstrap](/images/readme/application_avec_bootstrap.png)
-
-> Si Bootstrap ne fonctionne pas, vérifiez que vous avez bien lancé la commande ``` rails generate bootstrap:install static ``` dans votre terminal.
-> Si c'est le cas, vous aurez besoin d'ajouter les lignes suivantes au fichier ``` /app/views/layouts/application.html.erb ``` pour faire fonctionner Bootstrap :
-> ```
-> <link rel='stylesheet' href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
-> <script src='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js'></script>
-> ```
-
-![Layout avec bootstrap et URLs](/images/readme/application_avec_bootstrap_et_urls.png)
-
-Relancez votre serveur et rafraichissez votre application sur votre navigateur. Tadaaa ! Votre page d'accueil est un peu plus sympa et le formattage autour des données sera maintenant le meme pour toute nouvelle page de votre application.
-
-![Page web avec Bootstrap](/images/readme/page_web_avec_bootstrap.png)
-
-## Pour aller plus loin
-
-Votre application a maintenant une super mise en page de base.
-N'hésitez pas à modifier le fichier ``` /app/views/layouts/application.html.erb ``` à votre gout et à utiliser de nouveaux composants [Bootstrap](http://getbootstrap.com/) en vous aidant de la documentation officielle.
-
-# Étape 4 : Enregistrer les modifications sur le répertoire distant
+# Étape 3 : Enregistrer les modifications sur le répertoire distant
 
 [Enregistrer vos modifications et les envoyer sur votre répertoire Github](https://women-on-rails.github.io/guide/push_project)
 
-# Pour aller plus loin
-- Le protocole HTTP : https://openclassrooms.com/courses/les-requetes-http
-- Les actions CRUD : https://fr.wikipedia.org/wiki/CRUD
-- Avoir une définition succincte de Ruby On Rails : https://fr.wikipedia.org/wiki/Ruby_on_Rails
-- La documentation officielle de Ruby On Rails : http://guides.rubyonrails.org/
-- Notions intéressantes Ruby On Rails : http://geekmeup.fr/les-10-avantages-de-ruby-on-rails-pour-apprendre-a-bien-coder/
-- "Rails is like Burger King", par Simon Courtois : http://fr.slideshare.net/happynoff/rails-king
-- la doc de Bootstrap : http://getbootstrap.com/
+# Pour aller plus loin :
+- En savoir plus sur les controleurs : http://guides.rubyonrails.org/action_controller_overview.html ou
+- Les conditions : https://www.grafikart.fr/formations/apprendre-ruby/conditions
+- Les boucles : https://www.grafikart.fr/formations/apprendre-ruby/loops
+- Les méthodes : https://www.grafikart.fr/formations/apprendre-ruby/method
+- Les classes et instances : https://www.grafikart.fr/formations/apprendre-ruby/poo-objet
+- Tableaux, hashes et symboles : https://www.grafikart.fr/formations/apprendre-ruby/array-hash ou https://zestedesavoir.com/tutoriels/634/une-introduction-a-ruby/497_les-bases/2490_les-tableaux/
+- Les booléens : http://www.tonyryudev.com/joomla3/index.php/menu-mes-developpements/menu-cours-ruby-rgss/4-ruby-cours-n-3-les-booleens-et-les-calculs-logiques
