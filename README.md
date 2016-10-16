@@ -172,14 +172,14 @@ Nous allons changer cela et définir des variables dans la méthode ``` index ``
 > Notez que les variables définies dans le contrôleur sont précédées par le caractère @. Cela veut dire que la variable sera accessible dans la vue liée à la méthode dans laquelle elle est définie.
 > Si la variable n'est pas précédée d'un @, elle ne sera accessible que dans le contexte de la méthode ```index```.
 
-![Page de base](/images/readme/contenu_dans_variable.png)
+![Page de base](/images/readme/contenu_dans_variables.png)
 
 Appliquez cela à votre propre application puis rechargez la page du navigateur.
 Normalement, l'affichage ne devrait pas avoir changé car le contrôleur communique les variables et leur contenu à la vue ```index.html.erb```.
 
 Maintenant, définissons une variable locale (variable non précédée du caractère @) dans notre méthode ```index``` et utilisons la dans la vue ```index.html.erb```.
 
-![Page de base](/images/readme/avec_variable_non_propagée.png)
+![Page de base](/images/readme/avec_variable_non_propagee.png)
 
 Rechargez la page de votre navigateur. Vous devriez avoir une erreur qui s'affiche. La variable définie sans @ étant accessible seulement dans le contexte de la méthode ```index``` du contrôleur ```home```, elle n'est pas reconnue par la vue ```index.html.erb```.
 
