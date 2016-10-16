@@ -3,3 +3,8 @@
 <p><%= @surname_2 %></p>
 <p><%= @description %></p>
 <p><%= @comment %></p>
+
+<h2> Ses Curiosités </h2>
+<% @curiosities.each do |curiosity| %>
+	<p> - <%= curiosity %></p>
+<% end %>

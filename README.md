@@ -156,17 +156,52 @@ De plus, il y a 7 actions de base dans chaque contrôleur Rails:
 
 Petit indice : Le controlleur ```Home``` n'a que l'action ```index``` et la vue qui nous intéresse pour cet exercice est liée à cete action (elle a le même nom que l'action, et c'est comme ça que Ruby on Rails la retrouve).
 
+#### Modifier la vue et le contrôleur pour afficher des données
 
+Lancez un serveur Rails avec le bouton ```Run Project``` dans votre workspace Cloud9 pour pouvoir visualiser vos changements (ou avec la commande ```rails server``` dans votre terminal si vous avez une installation native). L'url à utiliser dans le navigateur sera indiquée dans le terminal.
 
+![Page de base](/images/readme/vue_navigateur.png)
 
+Pour le moment, tout ce que vous voyez affiché sur votre navigateur (lorsque vous lancez votre serveur et que vous allez sur l'adresse indiquée par votre console) est contenu dans le fichier ```index.html.erb```.
 
+![Page de base](/images/readme/contenu_dans_html.png)
 
+Nous allons changer cela et définir des variables dans la méthode ``` index ``` du contrôleur ```home``` qui contiendront le texte à afficher.
 
+> Important :
+> Notez que les variables définies dans le contrôleur sont précédées par le caractère @. Cela veut dire que la variable sera accessible dans la vue liée à la méthode dans laquelle elle est définie.
+> Si la variable n'est pas précédée d'un @, elle ne sera accessible que dans le contexte de la méthode ```index```.
 
+![Page de base](/images/readme/contenu_dans_variable.png)
 
+Appliquez cela à votre propre application puis rechargez la page du navigateur.
+Normalement, l'affichage ne devrait pas avoir changé car le contrôleur communique les variables et leur contenu à la vue ```index.html.erb```.
 
+Maintenant, définissons une variable locale (variable non précédée du caractère @) dans notre méthode ```index``` et utilisons la dans la vue ```index.html.erb```.
 
-À vous de jouer !
+![Page de base](/images/readme/avec_variable_non_propagée.png)
+
+Rechargez la page de votre navigateur. Vous devriez avoir une erreur qui s'affiche. La variable définie sans @ étant accessible seulement dans le contexte de la méthode ```index``` du contrôleur ```home```, elle n'est pas reconnue par la vue ```index.html.erb```.
+
+![Page de base](/images/readme/erreur.png)
+
+Enlevez la variable problématique dans la vue et dans le contrôleur.
+
+#### Manipuler des objets dans le contrôleur
+
+Retournez dans le contrôleur ```home``` et définissez un tableau de chaines de caractères dans la méthode ```index```.
+
+![Page de base](/images/readme/variable_tableau.png)
+
+Puis, affichez les éléments de votre tableau dans la vue ```index.html.erb``` en utilisant une boucle ```each```.
+
+![Page de base](/images/readme/html_avec_boucle.png)
+
+Rafraichissez la page de votre navigateur et voila ! Vous avez les éléments contenus dans votre tableau qui s'affichent à l'écran.
+
+![Page de base](/images/readme/vue_avec_tableau.png)
+
+Pour aller plus loin, vous pouvez créer une nouvelle classe et remplacer le tableau de chaines de caractères par un tableau contenant plusieurs instances de cette classe. Dans la vue, vous pourriez afficher un attribut de chacune des instances du tableau.
 
 ### Lancer le serveur sur lequel va tourner l'application
 

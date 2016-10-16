@@ -5,5 +5,13 @@ class HomeController < ApplicationController
 	@surname_2 = 'Ou : Chat grincheux'
 	@description = 'Célébrité du web ravageusement boudeuse, Mème interstelaire'
 	@comment = 'Ce chat roxe du poney'
+
+	@curiosities = [
+		'pelote de laine',
+		'tapis de souris',
+		'herbe à chat',
+		'arbre à gratter',
+		'oreilles de lapin',
+		'peluche dinosaure']
   end
 end
