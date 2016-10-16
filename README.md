@@ -1,5 +1,7 @@
 # Préambule
 
+Slides du cours disponibles [ici](http://slides.com/women_on_rails/week-3)
+
 Ce tutoriel a pour objectif de s'essayer à la console Ruby et de comprendre l'utilisation du langage Ruby dans le projet ``` Curiosities```, dans le cadre du cycle 1 des ateliers Women On Rails.
 
 # Étape 1 : Rappels
