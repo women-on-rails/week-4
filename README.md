@@ -172,12 +172,12 @@ Nous allons changer cela et définir des variables dans la méthode ``` index ``
 > Notez que les variables définies dans le contrôleur sont précédées par le caractère @. Cela veut dire que la variable sera accessible dans la vue liée à la méthode dans laquelle elle est définie.
 > Si la variable n'est pas précédée d'un @, elle ne sera accessible que dans le contexte de la méthode ```index```.
 
+![Page de base](/images/readme/contenu_dans_variables.png)
+
 > Astuce:
 > Les symboles ```<% %>``` que vous voyez dans le fichier ```index.html.erb``` servent à executer du code ruby dans une vue HTML.
 > Si on y rajoute le caractère ```=```, cela permet d'afficher quelque chose.
 > Par exemple ``` <%= @name %>``` affiche le contenu de la variable ```@name``` dans la vue ```index.html.erb```.
-
-![Page de base](/images/readme/contenu_dans_variables.png)
 
 Appliquez cela à votre propre application puis rechargez la page du navigateur.
 Normalement, l'affichage ne devrait pas avoir changé car le contrôleur communique les variables et leur contenu à la vue ```index.html.erb```.
@@ -240,3 +240,4 @@ Apres avoir fait des modifications sur cette vue, vous n'aurez qu'à recharger l
 - Les classes et instances : https://www.grafikart.fr/formations/apprendre-ruby/poo-objet
 - Tableaux, hashes et symboles : https://www.grafikart.fr/formations/apprendre-ruby/array-hash ou https://zestedesavoir.com/tutoriels/634/une-introduction-a-ruby/497_les-bases/2490_les-tableaux/
 - Les booléens : http://www.tonyryudev.com/joomla3/index.php/menu-mes-developpements/menu-cours-ruby-rgss/4-ruby-cours-n-3-les-booleens-et-les-calculs-logiques
+- Découverte des variables et de leur contexte : https://hackademy.io/tutoriel-videos/introduction-ruby-partie-4
