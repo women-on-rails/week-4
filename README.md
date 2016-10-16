@@ -172,6 +172,11 @@ Nous allons changer cela et définir des variables dans la méthode ``` index ``
 > Notez que les variables définies dans le contrôleur sont précédées par le caractère @. Cela veut dire que la variable sera accessible dans la vue liée à la méthode dans laquelle elle est définie.
 > Si la variable n'est pas précédée d'un @, elle ne sera accessible que dans le contexte de la méthode ```index```.
 
+> Astuce:
+> Les symboles ```<% %>``` que vous voyez dans le fichier ```index.html.erb``` servent à executer du code ruby dans une vue HTML.
+> Si on y rajoute le caractère ```=```, cela permet d'afficher quelque chose.
+> Par exemple ``` <%= @name %>``` affiche le contenu de la variable ```@name``` dans la vue ```index.html.erb```.
+
 ![Page de base](/images/readme/contenu_dans_variables.png)
 
 Appliquez cela à votre propre application puis rechargez la page du navigateur.
