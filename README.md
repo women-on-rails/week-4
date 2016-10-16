@@ -122,71 +122,49 @@ Ouvrez une console ruby en tapant ```irb``` dans votre terminal et maintenant pa
   grumpy.roar
   ```
 
-  Amusez-vous à créer plein de méthodes !
+Amusez-vous à créer plein de méthodes !
 
 ### Application au projet Curiosités
 
-[En construction]
+Ouvrez votre projet avec Cloud9, ou l'éditeur que vous utilisez si vous avez une installation native.
 
-Ouvrez votre projet avec l'éditeur que vous utilisez.
+Si vous utilisez SublimeText, vous pouvez faire subl . dans la console pour ouvrir directement votre projet. (subl c'est SublimeText, l'espace c'est parce que la commande est finie, et le point c'est pour dire "ouvre dans Sublime Text tout le dossier dans lequel je suis, en un coup").
 
-> Si vous utilisez SublimeText, vous pouvez faire ````subl .```` dans la console pour ouvrir directement votre projet.
-> (````subl```` c'est SublimeText, l'espace c'est parce que la commande est finie, et le point c'est pour dire "ouvre dans Sublime Text tout le dossier dans lequel je suis, en un coup").
+#### Ouvrir le contrôleur et la vue principaux de l'application
 
-Ecrivez la commande ``` rails generate scaffold curiosities index ``` dans votre terminal.
+Nous allons manipuler deux fichiers dans cet exercice : le contrôleur ````home_controller```` et la seule vue liée à ce contrôleur.
+Essayez de les trouver et ouvrez les avec votre éditeur de texte.
 
-Cela va générer de nouveaux fichiers dans votre application, dont un controlleur (``` app/controllers/curiosities_controller.rb ```), une vue (``` app/views/curiosities/index.html.erb ```) et un modèle (``` app/models/curiosity.rb ``` ).
+Quelques notions :
 
-Ouvrez le controleur ````curiosities_controller````. Il y a la méthode ````index```` qui correspond à la vue ````index.html.erb```` affichant la liste des curiosités.
+Ruby On Rails permet d'utiliser au mieux le [protocole HTTP](https://openclassrooms.com/courses/les-requetes-http), sur lequel repose la navigation Web. Il y a 4 types de requêtes principales en HTTP :
+- GET (afficher une page),
+- POST (créer une nouvelle ressource),
+- PUT (pour modifier entièrement la ressource, ou PATCH pour la modifier partiellement),
+- DELETE (supprimer une ressource).
 
-Dans cette méthode, vous allez récupérer toutes les curiosités stockées en base de donnée avec le modèle ````Curiosity````:
+Suite à chaque requête, le serveur envoie une réponse.
 
-```Ruby
-@curiosities = Curiosity.all
-````
+De plus, il y a 7 actions de base dans chaque contrôleur Rails:
+- SHOW : affiche une ressource en particulier
+- INDEX : affiche la liste de toutess les ressources d'un meme type
+- NEW : affiche le formulaire pour créer une nouvelle ressource
+- CREATE : une fois le précédent formulaire complété, crée la ressource
+- EDIT : affiche le formulaire d’édition d'une ressource
+- UPDATE : met a jour une ressource spécifiée
+- DESTROY : supprime une ressource spécifique
 
-Cela définie la variable ````curiosities```` contenant le tableau des objets de la classe ````Curiosity```` contenus en base de données.
+Petit indice : Le controlleur ```Home``` n'a que l'action ```index``` et la vue qui nous intéresse pour cet exercice est liée à cete action (elle a le même nom que l'action, et c'est comme ça que Ruby on Rails la retrouve).
 
-> Important :
-> Un objet ````Curiosity```` est composé d'un identifiant (````id````), d'un nom (````name````), d'une description (````description````), d'une url pour une image (````image_url````) et d'un texte relatif à l'image (````image_text````).
 
-Afficher une curiosité dans la console (````rails c````) donnera ceci :
-``` Ruby
-> curiosities = Curiosity.all
-> curiosities[0]
-=> #<Curiosity:0x007fd37090f920
- id: 1,
- name: "Joli mug",
- description: "Reçu au Japon, lors d'un congrès interlitières",
- image_url:
-  "https://s-media-cache-ak0.pinimg.com/236x/4a/86/bf/4a86bfbf02b472e5b385762b8f267a91.jpg",
- image_text: "Un grand mug de lait pour bien commencer la journée",
- created_at: Sat, 18 Jun 2016 17:54:37 UTC +00:00,
- updated_at: Sat, 18 Jun 2016 17:54:37 UTC +00:00>
-````
 
-Cette variable est passée du contrôleur à la vue et peut donc etre utilisée dans ````index.html.erb````.
 
-Ouvrez la vue ````index.html.erb```` et modifiez-la pour remplacer le texte de vos curiosités par les données contenues dans chaque objet ````Curiosity````.
 
-Pour interpréter du code Ruby sans rien afficher dans votre page HTML, il faut entourer le code avec ````<%```` et ````%>````.
-Si vous souhaitez afficher le résultat, il faut l'entourer de ````<%=```` et ````%>````.
 
-Voici des exemples :
 
-``` Ruby
- <% @cusiosities = Curiosity.all %> # Remplit la variable @curiosities avec toutes les Curiosités
- <%= @curiosities[0].name %> # Affiche le nom de la curiosité 0 (la première de la liste) dans la vue
-````
 
-Et enfin, pour parcourir le tableau des curiosités, vous pouvez utiliser une boucle ````each```` :
-``` Ruby
-<% @curiosities.each do |curiosity| # Définit le début de la boucle %>
- <div>
-   <%= curiosity.name # affiche le nom pour chaque élément du tableau %>
- </div>
-<% end %> # Détermine la fin de la boucle
-````
+
+
 
 À vous de jouer !
 
@@ -212,6 +190,9 @@ Apres avoir fait des modifications sur cette vue, vous n'aurez qu'à recharger l
 [Enregistrer vos modifications et les envoyer sur votre répertoire Github](https://women-on-rails.github.io/guide/push_project)
 
 # Pour aller plus loin :
+- Le protocole HTTP : https://openclassrooms.com/courses/les-requetes-http
+- Les actions CRUD : https://fr.wikipedia.org/wiki/CRUD
+- La documentation officielle de Ruby On Rails : http://guides.rubyonrails.org/
 - En savoir plus sur les controleurs : http://guides.rubyonrails.org/action_controller_overview.html ou
 - Les conditions : https://www.grafikart.fr/formations/apprendre-ruby/conditions
 - Les boucles : https://www.grafikart.fr/formations/apprendre-ruby/loops
