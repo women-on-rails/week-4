@@ -122,7 +122,7 @@ Ouvrez une console ruby en tapant ```irb``` dans votre terminal et maintenant pa
   grumpy.roar
   ```
 
-Amusez-vous à créer plein de méthodes !
+  Amusez-vous à créer plein de méthodes !
 
 ### Application au projet Curiosités
 
