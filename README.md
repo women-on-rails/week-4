@@ -35,11 +35,11 @@ Une base de données est un logiciel dans lequel on peut stocker des information
 
 Dans Ruby On Rails, une "migration" est ce qui va permettre de faire évoluer la structure et le contenu de la base de données, au fil du développement d'un projet. Les migrations ne prennent pas en compte le type de base de données utilisé. Elles fonctionnent sur n'importe quelle base de données gérée par Ruby On Rails.
 
-### Création du modèle Curiosity
+#### Création du modèle Curiosity
 
 Dans votre terminal, tappez la commande suivante:
 
-``` rails generate model Cusiority name:string description:text image_url:text, image_text:string ```
+``` rails generate model Cusiority name:string description:text image_url:text image_text:string ```
 
 ![Page de base](/images/readme/generate_model.png)
 
@@ -49,7 +49,7 @@ Cela va créer automatiquement 4 fichiers différents:
 - test/models/cusiority_test.rb : fichier de test (notion non abordée ici)
 - test/fixtures/cusiorities.yml : fichier utilisé pour les tests (notion non abordée ici)
 
-#### La migration
+##### La migration
 
 En ouvrant le fichier ````/db/migrate/20161023215837_create_cusiorities.rb```` (les chiffres peuvent changer en fonction de la date à laquelle vous l'avez faite) vous pouvez voir comment est composée une migration qui crée une table.
 
@@ -86,7 +86,7 @@ Ouvrez le fichier ````/db/schema.rb````. Vous pouvez constater que vous retrouve
 
 Vous pouvez voir à quelle migration vous en êtes dans le fichier ````/db/schema.rb```` avec ````version: 20160618174815````.
 
-#### ActiveRecord et les modèles
+##### ActiveRecord et les modèles
 
 ActiveRecord est la partie de Ruby On Rails qui permet de manipuler les informations stockées en base de données avec des classes Ruby (qu'on appelle les modèles).
 
