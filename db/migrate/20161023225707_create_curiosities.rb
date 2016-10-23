@@ -1,6 +1,6 @@
-class CreateCusiorities < ActiveRecord::Migration
+class CreateCuriosities < ActiveRecord::Migration
   def change
-    create_table :cusiorities do |t|
+    create_table :curiosities do |t|
       t.string :name
       t.text :description
       t.text :image_url

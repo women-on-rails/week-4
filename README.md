@@ -51,7 +51,7 @@ Cela va créer automatiquement 4 fichiers différents:
 
 ##### La migration
 
-En ouvrant le fichier ````/db/migrate/20161023215837_create_cusiorities.rb```` (les chiffres peuvent changer en fonction de la date à laquelle vous l'avez faite) vous pouvez voir comment est composée une migration qui crée une table.
+En ouvrant le fichier ````/db/migrate/20161023225707_create_cusiorities.rb```` (les chiffres peuvent changer en fonction de la date à laquelle vous l'avez faite) vous pouvez voir comment est composée une migration qui crée une table.
 
 ![Page de base](/images/readme/migration.png)
 
@@ -84,13 +84,13 @@ Ouvrez le fichier ````/db/schema.rb````. Vous pouvez constater que vous retrouve
 > Astuce :
 > Une migration a un identifiant. Cela permet à votre application de savoir quelle est la dernière migration qui a été traitée, pour éviter de la rejouer. Cet identifiant de migration est visible dans le nom du fichier de la migration.
 
-Vous pouvez voir à quelle migration vous en êtes dans le fichier ````/db/schema.rb```` avec ````version: 20160618174815````.
+Vous pouvez voir à quelle migration vous en êtes dans le fichier ````/db/schema.rb```` avec ````version: 20161023225707````.
 
 ##### ActiveRecord et les modèles
 
 ActiveRecord est la partie de Ruby On Rails qui permet de manipuler les informations stockées en base de données avec des classes Ruby (qu'on appelle les modèles).
 
-Cela permet de représenter les attributs d'une table de la base de données dans un modèle, pour avoir accès à chacune des lignes de cette table (comme une ligne dans Excel !) et pouvoir les manipuler.
+Cela permet de représenter les attributs d'une table de la base de données dans un modèle, pour avoir accès à chacune des lignes de cette table (comme une ligne dans Excel !) et pouvoir les manipuler dans votre application.
 
 Ouvrez votre terminal puis ouvrez une console Ruby On Rails : ````rails console```` (ou ````rails c````)
 

@@ -1,6 +1,6 @@
 require 'test_helper'
 
-class CusiorityTest < ActiveSupport::TestCase
+class CuriosityTest < ActiveSupport::TestCase
   # test "the truth" do
   #   assert true
   # end

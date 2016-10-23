@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161023215837) do
+ActiveRecord::Schema.define(version: 20161023225707) do
 
   create_table "cusiorities", force: :cascade do |t|
     t.string   "name"
