@@ -12,10 +12,6 @@ Vous pouvez retrouver les commandes utiles pour le terminal, git et la console R
 
 ## MVC
 
-## Le modèle
-
-
-
 # Étape 2 : Lire l'exercice et se lancer
 
 ## Application au projet Curiosités
@@ -148,7 +144,7 @@ Amusez-vous à créer de nouvelles curiosités dans votre base de données avec 
 
 Nous allons maintenant quitter la console Rails. Pour cela, tapez "exit" dans la console à partir du terminal.
 
-#### Affichage des curiosités dans l'application
+### Affichage des curiosités dans l'application
 
 Ouvrez le controleur ```app/controllers/home_controller.rb```. Il y a la méthode index qui correspond à vue index.html.erb affichant votre page d'accueil.
 
@@ -201,7 +197,6 @@ Voici un exemple de liste de curiosités dans la vue ``` app/views/home/index.ht
 Et voici son rendu :
 
 ![Page de base](/images/readme/final_view.png)
-
 À vous de jouer !
 
 
@@ -210,3 +205,10 @@ Et voici son rendu :
 [Enregistrer vos modifications et les envoyer sur votre répertoire Github](https://women-on-rails.github.io/guide/push_project)
 
 # Pour aller plus loin :
+- La documentation de Ruby : http://ruby-doc.org/core-2.3.1/
+- La documentation de Ruby On Rails : http://api.rubyonrails.org/
+- Modèle - Vue - Controleur : http://fr.slideshare.net/happynoff/rails-king ou www.youtube.com/watch?v=gTBCHu0btn8 ou encore https://fr.wikipedia.org/wiki/Mod%C3%A8le-vue-contr%C3%B4leur
+- Active Record : https://fr.wikipedia.org/wiki/Active_record (concept en français) ou http://guides.rubyonrails.org/active_record_basics.html (introduction de Rails, en anglais)
+- Comparaison entre Sqlite, MySql et Postgres (EN) : https://www.digitalocean.com/community/tutorials/sqlite-vs-mysql-vs-postgresql-a-comparison-of-relational-database-management-systems
+- Les migrations (EN) : http://guides.rubyonrails.org/active_record_migrations.html
+- Les validations (EN) : http://guides.rubyonrails.org/active_record_validations.html
