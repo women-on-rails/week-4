@@ -39,19 +39,19 @@ Dans Ruby On Rails, une "migration" est ce qui va permettre de faire évoluer la
 
 Dans votre terminal, tappez la commande suivante:
 
-``` rails generate model Cusiority name:string description:text image_url:text image_text:string ```
+``` rails generate model Curiosity name:string description:text image_url:text image_text:string ```
 
 ![Page de base](/images/readme/generate_model.png)
 
 Cela va créer automatiquement 4 fichiers différents:
-- db/migrate/20161023215837_create_cusiorities.rb : fichier de migration
-- app/models/cusiority.rb : modèle Curiosity
-- test/models/cusiority_test.rb : fichier de test (notion non abordée ici)
-- test/fixtures/cusiorities.yml : fichier utilisé pour les tests (notion non abordée ici)
+- db/migrate/20161023225707_create_curiosities.rb : fichier de migration
+- app/models/curiosity.rb : modèle Curiosity
+- test/models/curiosity_test.rb : fichier de test (notion non abordée ici)
+- test/fixtures/curiosities.yml : fichier utilisé pour les tests (notion non abordée ici)
 
 ##### La migration
 
-En ouvrant le fichier ````/db/migrate/20161023225707_create_cusiorities.rb```` (les chiffres peuvent changer en fonction de la date à laquelle vous l'avez faite) vous pouvez voir comment est composée une migration qui crée une table.
+En ouvrant le fichier ````/db/migrate/20161023225707_create_curiosities.rb```` (les chiffres peuvent changer en fonction de la date à laquelle vous l'avez faite) vous pouvez voir comment est composée une migration qui crée une table.
 
 ![Page de base](/images/readme/migration.png)
 
