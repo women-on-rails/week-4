@@ -94,17 +94,115 @@ Cela permet de représenter les attributs d'une table de la base de données dan
 
 Ouvrez votre terminal puis ouvrez une console Ruby On Rails : ````rails console```` (ou ````rails c````)
 
+La commande ``` rails generate model Curiosity name:string description:text image_url:text image_text:string ``` précedemment utilisée a créé le modèle ```Curiosity``` contenu dans le fichier ``` app/models/curiosities.rb```.
 
+![Page de base](/images/readme/model.png)
 
+###### Créer une curiosité en base de données
 
+Nous allons maintenant créer une nouvelle curiosité dans notre base de données en utilisant ce modèle ``` Curiosity``` :
 
+``` Curiosity.create(name: "Joli mug", description: "Recu au Japon, lors d'un congres interlitieres", image_url: "https://s-media-cache-ak0.pinimg.com/236x/4a/86/bf/4a86bfbf02b472e5b385762b8f267a91.jpg", image_text: "Un grand mug de lait pour bien commencer la journee") ```
 
+![Page de base](/images/readme/creation_curiosity.png)
 
+Cela va d'abord vous afficher la requête SQL faite grâce à Active Record pour créer la curiosité :
 
-- creation du modèle Curiosity
-- creation en console de nouvelles curiosités en base de données
-- ajout de validations sur le modele pour obliger a avoir un nom
+```  (0.1ms)  begin transaction
+  SQL (0.2ms)  INSERT INTO "curiosities" ("name", "description", "image_url", "image_text", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?)  [["name", "Joli mug"], ["description", "Recu au Japon, lors d'un congres interlitieres"], ["image_url", "https://s-media-cache-ak0.pinimg.com/236x/4a/86/bf/4a86bfbf02b472e5b385762b8f267a91.jpg"], ["image_text", "Un grand mug de lait pour bien commencer la journee"], ["created_at", "2016-10-23 23:09:18.922795"], ["updated_at", "2016-10-23 23:09:18.922795"]]
+   (3.3ms)  commit transaction ```
 
+Puis, cela va renvoyer l'objet nouvellement créé qui a dans l'exemple l'identifiant `3` en base de données (ici ce sont des numéros croissants donc c'est la numéro 3 ou #3, mais ça pourrait etre l'objet 4 ou 5) :
+
+``` => #<Curiosity id: 3, name: "Joli mug", description: "Recu au Japon, lors d'un congres interlitieres", image_url: "https://s-media-cache-ak0.pinimg.com/236x/4a/86/bf...", image_text: "Un grand mug de lait pour bien commencer la journe...", created_at: "2016-10-23 23:09:18", updated_at: "2016-10-23 23:09:18"> ```
+
+###### Récupérer une curiosité de la base de données
+
+Pour manipuler cette nouvelle curiosité dans une variable, on peut la récupérer de la manière suivante :
+
+``` ma_curiosite = Curiosity.find(3) ```
+
+Cela va d'abord vous afficher la requête SQL faite grâce à Active Record pour récupérer la curiosité qui a l'identifiant `3` en base de données :
+
+````
+Curiosity Load (0.2ms)  SELECT  "curiosities".* FROM "curiosities" WHERE "curiosities"."id" = ? LIMIT 1  [["id", 3]]
+````
+
+À la suite de cette ligne, vous pouvez voir l'objet qui représente la curiosité #1 avec tous ses attributs :
+
+````
+#<Curiosity:0x007f9f697791c8
+ id: 3,
+ name: "Joli mug",
+ description: "Recu au Japon, lors d'un congres interlitieres",
+ image_url:
+  "https://s-media-cache-ak0.pinimg.com/236x/4a/86/bf/4a86bfbf02b472e5b385762b8f267a91.jpg",
+ image_text: "Un grand mug de lait pour bien commencer la journee",
+ created_at: Sat, 18 Jun 2016 17:54:37 UTC +00:00,
+ updated_at: Sat, 18 Jun 2016 17:54:37 UTC +00:00>
+ ````
+
+La ligne avec l'identifiant 3 de la table ````Curiosity```` de la base de données a été abstraite dans le modèle (ou classe) ````Curiosity```` de l'application, ce qui donne une instance de ce modèle.
+
+Amusez-vous à créer de nouvelles curiosités dans votre base de données avec ce que vous venez d'apprendre !
+
+Nous allons maintenant quitter la console Rails. Pour cela, tapez "exit" dans la console à partir du terminal.
+
+#### Affichage des curiosités dans l'application
+
+Ouvrez le controleur ```app/controllers/home_controller.rb```. Il y a la méthode index qui correspond à vue index.html.erb affichant votre page d'accueil.
+
+Dans cette méthode, vous allez récupérer toutes les curiosités stockées en base de donnée avec le modèle ```Curiosity```:
+
+``` @my_curiosities = Curiosity.all ```
+
+![Page de base](/images/readme/my_curiosities.png)
+
+Cela définit la variable ```@my_curiosities``` contenant le tableau des objets de la classe ```Curiosity``` contenus en base de données.
+
+> Important : Un objet ```Curiosity``` est composé d'un identifiant (```id```), d'un nom (```name```), d'une description (```description```), d'une url pour une image (```image_url```) et d'un texte relatif à l'image (```image_text```).
+
+Afficher une curiosité dans la console (```rails c```) donnera ceci :
+
+```
+> curiosities = Curiosity.all
+> curiosities[0]
+=> #<Curiosity:0x007fd37090f920
+   id: 3, name: "Joli mug", description: "Recu au Japon, lors d'un congres interlitieres", image_url: "https://s-media-cache-ak0.pinimg.com/236x/4a/86/bf/4a86bfbf02b472e5b385762b8f267a91.jpg", image_text: "Un grand mug de lait pour bien commencer la journee", created_at: Sat, 18 Jun 2016 17:54:37 UTC +00:00, updated_at: Sat, 18 Jun 2016 17:54:37 UTC +00:00>
+```
+
+Cette variable d'instance (variable avec un ```@```) est passée du contrôleur à la vue et peut donc etre utilisée dans index.html.erb.
+
+Ouvrez la vue ```app/views/home/index.html.erb``` et modifiez-la pour remplacer le texte de vos curiosités par les données contenues dans chaque objet ```Curiosity```.
+
+> Rappel : Pour interpréter du code Ruby sans rien afficher dans votre page HTML, il faut entourer le code avec ```<%``` et ```%>```. Si vous souhaitez afficher le résultat, il faut l'entourer de ```<%=``` et ```%>```.
+
+Voici des exemples :
+
+```
+<% @cusiosities = Curiosity.all %> # Remplit la variable @curiosities avec toutes les Curiosités
+<%= @curiosities[0].name %> # Affiche le nom de la curiosité 0 (la première de la liste) dans la vue
+```
+
+Et enfin, pour parcourir le tableau des curiosités, vous pouvez utiliser une boucle ```each``` :
+
+```
+<% @curiosities.each do |curiosity| # Définit le début de la boucle %>
+<div>
+  <%= curiosity.name # affiche le nom pour chaque élément du tableau %>
+</div>
+<% end %> # Détermine la fin de la boucle
+```
+
+Voici un exemple de liste de curiosités dans la vue ``` app/views/home/index.html.erb ``` :
+
+![Page de base](/images/readme/example_each.png)
+
+Et voici son rendu :
+
+![Page de base](/images/readme/final_view.png)
+
+À vous de jouer !
 
 
 # Étape 3 : Enregistrer les modifications sur le répertoire distant

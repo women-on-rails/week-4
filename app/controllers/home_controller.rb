@@ -6,6 +6,7 @@ class HomeController < ApplicationController
 	@description = 'Célébrité du web ravageusement boudeuse, Mème interstelaire'
 	@comment = 'Ce chat roxe du poney'
 
+	# variable d'instance contenant un tableau de textes
 	@curiosities = [
 		'pelote de laine',
 		'tapis de souris',
@@ -13,5 +14,8 @@ class HomeController < ApplicationController
 		'arbre à gratter',
 		'oreilles de lapin',
 		'peluche dinosaure']
+
+	# Variable d'instance contenant un tableau de curiosités
+	@my_curiosities = Curiosity.all
   end
 end
