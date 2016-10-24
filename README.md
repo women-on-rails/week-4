@@ -130,7 +130,7 @@ Pour manipuler cette nouvelle curiosité dans une variable, on peut la récupér
 
 ```Ruby
  ma_curiosite = Curiosity.find(3)
-Ruby````
+````
 
 Cela va d'abord vous afficher la requête SQL faite grâce à Active Record pour récupérer la curiosité qui a l'identifiant `3` en base de données :
 
@@ -164,7 +164,9 @@ Ouvrez le controleur ```app/controllers/home_controller.rb```. Il y a la méthod
 
 Dans cette méthode, vous allez récupérer toutes les curiosités stockées en base de donnée avec le modèle ```Curiosity```:
 
-```Ruby @my_curiosities = Curiosity.all ````
+```Ruby
+@my_curiosities = Curiosity.all
+````
 
 ![Page de base](/images/readme/my_curiosities.png)
 
@@ -284,7 +286,7 @@ Curiosity Load (0.2ms)  SELECT  "curiosities".* FROM "curiosities" WHERE "curios
 
 Puis, vous pouvez voir l'objet qui représente la curiosité #1 avec tous ses attributs, dont l'attribut ````category````... qui est vide pour le moment :
 
-````
+```Ruby
 #<Curiosity:0x007ff36803a300
  id: 1,
  name: "Joli mug",
