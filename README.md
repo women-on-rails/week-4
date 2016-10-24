@@ -12,6 +12,8 @@ Vous pouvez retrouver les commandes utiles pour le terminal, git et la console R
 
 ## MVC
 
+Le rappel sur le patron de conception [Modèle - Vue - Controleur] peut etre trouvé [ici](openclassrooms.com/courses/apprendre-asp-net-mvc/le-pattern-mvc)
+
 # Étape 2 : Lire l'exercice et se lancer
 
 ## Application au projet Curiosités
@@ -199,12 +201,111 @@ Et voici son rendu :
 ![Page de base](/images/readme/final_view.png)
 À vous de jouer !
 
+# Étape 3 : Pour aller plus loin
 
-# Étape 3 : Enregistrer les modifications sur le répertoire distant
+## Ajouter de nouveaux attributs
+
+Nous aimerions ranger chaque curiosité dans des catégories, une par curiosité. Par exemple :
+- le joli mug sera de catégorie ````Vaisselle````
+- la bobine de fil sera de catégorie ````Coffre à jouet````
+- le super t-shirt sera de catégorie ````Penderie````
+- le jeu de société Catopoly sera de catégorie ````Coffre à jouet````
+- etc
+
+Pour cela, il faut ajouter un nouvel attribut ````Category```` à la table ````Curiosity```` de la base de données. Pour demander à Ruby On Rails de créer notre nouvelle migration, il faut utiliser le générateur de migrations avec la commande suivante dans le terminal :
+
+````
+rails generate migration add_category_to_curiosities category:string
+````
+
+Cette commande crée un nouveau fichier de migration dans le dossier ````db```` situé à la racine du dossier de l'application. Ouvrez ce fichier de migration avec votre éditeur de texte.
+
+Le contenu devrait ressembler à cela :
+
+```Ruby
+class AddCategoryToCuriosities < ActiveRecord::Migration
+  def change
+    add_column :curiosities, :category, :string
+  end
+end
+````
+
+Il y a donc la classe ````AddCategoryToCuriosities````, qui "hérite" de ````ActiveRecord::Migration```` (elle sait faire tout ce que sa classe mère sait faire). Dans cette classe-là, on a la méthode ````change```` permettant de faire des modifications sur la base de données.
+
+Dans la méthode ````change````, il y a la ligne ````add_column :curiosities, :type, :string````. ````add_column```` veut dire que l'on demande à ajouter une colonne à une table qui s'appelle ````Curiosities```` (````:curiosities````) et que cette nouvelle colonne s'appelle ````category```` (````:category````) et est de type ````String````.
+
+Le fichier de la migration a été créé, mais n'a pas encore été exécuté. D'ailleurs, si on regarde le fichier ````db/schema.rb````, le numéro de version n'est pas encore celui de cette mirgation : il est encore au numéro de celle d'avant (dans notre exemple ````20160618174815````).
+
+Pour appliquer notre nouvelle migration, nous devons effectuer la commande suivante dans le terminal :
+````rake db:migrate````
+
+````rake```` est un outil permettant de lancer des "tâches". Il a une "famille" de tâches "db" pour gérer la base de données, et on souhaite qu'il exécute la tâche ````migrate````.
+
+Cela devrait afficher quelque chose de similaire à :
+````
+$ rake db:migrate
+#== 20160626095924 AddCategoryToCuriosities: migrating #=========================
+#-- add_column(:curiosities, :category, :string)
+#   -> 0.0029s
+#== 20160626095924 AddCategoryToCuriosities: migrated (0.0029s) ================
+````
+Grace à ce message, on sait que notre migration a été effectuée avec succès. Si on rouvre de nouveau le fichier ````db/schema.rb````, on peut voir que le numéro de version a été mis à jour et que notre nouvelle colonne est bien prise en compte :
+```Ruby
+  create_table "curiosities", force: :cascade do |t|
+    t.string   "name"
+    t.text     "description"
+    t.text     "image_url"
+    t.string   "image_text"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+    t.string   "category"
+  end
+````
+
+Revenons dans une console Ruby On Rails pour voir ce qu'il en est de notre instance de classe ````Curiosity````. Tapez ````curiosity = Curiosity.find(3)````
+
+Cela va de nouveau vous afficher la requête que ActiveRecord envoie à la base de données pour récupérer la curiosité #3 :
+
+````
+Curiosity Load (0.2ms)  SELECT  "curiosities".* FROM "curiosities" WHERE "curiosities"."id" = ? LIMIT 1  [["id", 3]]
+````
+
+Puis, vous pouvez voir l'objet qui représente la curiosité #1 avec tous ses attributs, dont l'attribut ````category````... qui est vide pour le moment :
+
+````
+#<Curiosity:0x007ff36803a300
+ id: 1,
+ name: "Joli mug",
+ description: "Recu au Japon, lors d'un congres interlitieres",
+ image_url:
+  "https://s-media-cache-ak0.pinimg.com/236x/4a/86/bf/4a86bfbf02b472e5b385762b8f267a91.jpg",
+ image_text: "Un grand mug de lait pour bien commencer la journee",
+ created_at: Sat, 18 Jun 2016 17:54:37 UTC +00:00,
+ updated_at: Sat, 18 Jun 2016 17:54:37 UTC +00:00>,
+ category: nil>
+ ````
+
+Et voila, une catégorie est associée à votre curiosité !
+
+## Ajout de validations des données
+
+Si vous souhaitez renseigner les catégories de toutes vos curiosités, il serait intéressant de rajouter une validation au niveau du modèle ````Curiosity```` pour que l'attribut ````category```` n'accepte que quelques valeurs. Cela permet d'être sûr de ce qu'il y a en base de données et d'éviter les doublons 'cachés'.
+
+Par exemple, si on veut avoir une catégorie 'Penderie', pour simplifier la recherche sur cette catégorie, on ne veut pas pouvoir créer des curiosités avec la catégorie 'penderie' ou 'pendrie' ou encore 'PenDeRie'. Seule la 'Penderie' sera acceptée comme valeur de l'attribut ````category````.
+
+Aidez-vous de la page 'Validations' du guide Ruby On Rails (http://guides.rubyonrails.org/active_record_validations.html) et ajoutez une validation au niveau de l'attribut ````category```` du modèle ````Curiosity```` pour n'accepter que les valeurs suivantes :
+- Penderie
+- Coffre à jouets
+- Vaisselle
+- Décorations
+- Amis
+- Bibliothèque
+
+# Étape 4 : Enregistrer les modifications sur le répertoire distant
 
 [Enregistrer vos modifications et les envoyer sur votre répertoire Github](https://women-on-rails.github.io/guide/push_project)
 
-# Pour aller plus loin :
+# Liens Utiles :
 - La documentation de Ruby : http://ruby-doc.org/core-2.3.1/
 - La documentation de Ruby On Rails : http://api.rubyonrails.org/
 - Modèle - Vue - Controleur : http://fr.slideshare.net/happynoff/rails-king ou www.youtube.com/watch?v=gTBCHu0btn8 ou encore https://fr.wikipedia.org/wiki/Mod%C3%A8le-vue-contr%C3%B4leur
