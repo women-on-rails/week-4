@@ -37,7 +37,9 @@ Dans Ruby On Rails, une "migration" est ce qui va permettre de faire évoluer la
 
 Dans votre terminal, tappez la commande suivante:
 
-``` rails generate model Curiosity name:string description:text image_url:text image_text:string ```
+```Shell
+ rails generate model Curiosity name:string description:text image_url:text image_text:string
+````
 
 ![Page de base](/images/readme/generate_model.png)
 
@@ -71,7 +73,9 @@ Pour le moment, aucune migration n'a encore été appliquée à la base de donn�
 
 Pour appliquer la migration, faites la commande suivante dans votre terminal:
 
-``` rake db:migrate ```
+```Shell
+ rake db:migrate
+````
 
 ![Page de base](/images/readme/db_migrate.png)
 
@@ -100,35 +104,43 @@ La commande ``` rails generate model Curiosity name:string description:text imag
 
 Nous allons maintenant créer une nouvelle curiosité dans notre base de données en utilisant ce modèle ``` Curiosity``` :
 
-``` Curiosity.create(name: "Joli mug", description: "Recu au Japon, lors d'un congres interlitieres", image_url: "https://s-media-cache-ak0.pinimg.com/236x/4a/86/bf/4a86bfbf02b472e5b385762b8f267a91.jpg", image_text: "Un grand mug de lait pour bien commencer la journee") ```
+```Ruby
+ Curiosity.create(name: "Joli mug", description: "Recu au Japon, lors d'un congres interlitieres", image_url: "https://s-media-cache-ak0.pinimg.com/236x/4a/86/bf/4a86bfbf02b472e5b385762b8f267a91.jpg", image_text: "Un grand mug de lait pour bien commencer la journee")
+````
 
 ![Page de base](/images/readme/creation_curiosity.png)
 
 Cela va d'abord vous afficher la requête SQL faite grâce à Active Record pour créer la curiosité :
 
-```  (0.1ms)  begin transaction
-  SQL (0.2ms)  INSERT INTO "curiosities" ("name", "description", "image_url", "image_text", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?)  [["name", "Joli mug"], ["description", "Recu au Japon, lors d'un congres interlitieres"], ["image_url", "https://s-media-cache-ak0.pinimg.com/236x/4a/86/bf/4a86bfbf02b472e5b385762b8f267a91.jpg"], ["image_text", "Un grand mug de lait pour bien commencer la journee"], ["created_at", "2016-10-23 23:09:18.922795"], ["updated_at", "2016-10-23 23:09:18.922795"]]
-   (3.3ms)  commit transaction ```
+```Ruby
+(0.1ms)  begin transaction
+SQL (0.2ms)  INSERT INTO "curiosities" ("name", "description", "image_url", "image_text", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?)  [["name", "Joli mug"], ["description", "Recu au Japon, lors d'un congres interlitieres"], ["image_url", "https://s-media-cache-ak0.pinimg.com/236x/4a/86/bf/4a86bfbf02b472e5b385762b8f267a91.jpg"], ["image_text", "Un grand mug de lait pour bien commencer la journee"], ["created_at", "2016-10-23 23:09:18.922795"], ["updated_at", "2016-10-23 23:09:18.922795"]]
+(3.3ms)  commit transaction
+````
 
 Puis, cela va renvoyer l'objet nouvellement créé qui a dans l'exemple l'identifiant `3` en base de données (ici ce sont des numéros croissants donc c'est la numéro 3 ou #3, mais ça pourrait etre l'objet 4 ou 5) :
 
-``` => #<Curiosity id: 3, name: "Joli mug", description: "Recu au Japon, lors d'un congres interlitieres", image_url: "https://s-media-cache-ak0.pinimg.com/236x/4a/86/bf...", image_text: "Un grand mug de lait pour bien commencer la journe...", created_at: "2016-10-23 23:09:18", updated_at: "2016-10-23 23:09:18"> ```
+```Ruby
+ => #<Curiosity id: 3, name: "Joli mug", description: "Recu au Japon, lors d'un congres interlitieres", image_url: "https://s-media-cache-ak0.pinimg.com/236x/4a/86/bf...", image_text: "Un grand mug de lait pour bien commencer la journe...", created_at: "2016-10-23 23:09:18", updated_at: "2016-10-23 23:09:18">
+````
 
 ###### Récupérer une curiosité de la base de données
 
 Pour manipuler cette nouvelle curiosité dans une variable, on peut la récupérer de la manière suivante :
 
-``` ma_curiosite = Curiosity.find(3) ```
+```Ruby
+ ma_curiosite = Curiosity.find(3)
+Ruby````
 
 Cela va d'abord vous afficher la requête SQL faite grâce à Active Record pour récupérer la curiosité qui a l'identifiant `3` en base de données :
 
-````
+```Ruby
 Curiosity Load (0.2ms)  SELECT  "curiosities".* FROM "curiosities" WHERE "curiosities"."id" = ? LIMIT 1  [["id", 3]]
 ````
 
 À la suite de cette ligne, vous pouvez voir l'objet qui représente la curiosité #1 avec tous ses attributs :
 
-````
+```Ruby
 #<Curiosity:0x007f9f697791c8
  id: 3,
  name: "Joli mug",
@@ -152,7 +164,7 @@ Ouvrez le controleur ```app/controllers/home_controller.rb```. Il y a la méthod
 
 Dans cette méthode, vous allez récupérer toutes les curiosités stockées en base de donnée avec le modèle ```Curiosity```:
 
-``` @my_curiosities = Curiosity.all ```
+```Ruby @my_curiosities = Curiosity.all ````
 
 ![Page de base](/images/readme/my_curiosities.png)
 
@@ -162,12 +174,12 @@ Cela définit la variable ```@my_curiosities``` contenant le tableau des objets 
 
 Afficher une curiosité dans la console (```rails c```) donnera ceci :
 
-```
+```Ruby
 > curiosities = Curiosity.all
 > curiosities[0]
 => #<Curiosity:0x007fd37090f920
    id: 3, name: "Joli mug", description: "Recu au Japon, lors d'un congres interlitieres", image_url: "https://s-media-cache-ak0.pinimg.com/236x/4a/86/bf/4a86bfbf02b472e5b385762b8f267a91.jpg", image_text: "Un grand mug de lait pour bien commencer la journee", created_at: Sat, 18 Jun 2016 17:54:37 UTC +00:00, updated_at: Sat, 18 Jun 2016 17:54:37 UTC +00:00>
-```
+````
 
 Cette variable d'instance (variable avec un ```@```) est passée du contrôleur à la vue et peut donc etre utilisée dans index.html.erb.
 
@@ -177,20 +189,20 @@ Ouvrez la vue ```app/views/home/index.html.erb``` et modifiez-la pour remplacer 
 
 Voici des exemples :
 
-```
+```Ruby
 <% @cusiosities = Curiosity.all %> # Remplit la variable @curiosities avec toutes les Curiosités
 <%= @curiosities[0].name %> # Affiche le nom de la curiosité 0 (la première de la liste) dans la vue
-```
+````
 
 Et enfin, pour parcourir le tableau des curiosités, vous pouvez utiliser une boucle ```each``` :
 
-```
+```Ruby
 <% @curiosities.each do |curiosity| # Définit le début de la boucle %>
 <div>
   <%= curiosity.name # affiche le nom pour chaque élément du tableau %>
 </div>
 <% end %> # Détermine la fin de la boucle
-```
+````
 
 Voici un exemple de liste de curiosités dans la vue ``` app/views/home/index.html.erb ``` :
 
@@ -214,7 +226,7 @@ Nous aimerions ranger chaque curiosité dans des catégories, une par curiosité
 
 Pour cela, il faut ajouter un nouvel attribut ````Category```` à la table ````Curiosity```` de la base de données. Pour demander à Ruby On Rails de créer notre nouvelle migration, il faut utiliser le générateur de migrations avec la commande suivante dans le terminal :
 
-````
+```Shell
 rails generate migration add_category_to_curiosities category:string
 ````
 
