@@ -35,7 +35,7 @@ Dans Ruby On Rails, une "migration" est ce qui va permettre de faire évoluer la
 
 #### Création du modèle Curiosity
 
-Dans votre terminal, tappez la commande suivante:
+Dans votre terminal, tapez la commande suivante:
 
 ```Shell
  rails generate model Curiosity name:string description:text image_url:text image_text:string
