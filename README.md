@@ -2,7 +2,7 @@
 
 Slides du cours disponibles [ici](http://slides.com/women_on_rails/week-4)
 
-Ce tutoriel a pour objectif de s'essayer à la console Ruby et de comprendre l'utilisation du langage Ruby dans le projet ``` Curiosities```, dans le cadre du cycle 1 des ateliers Women On Rails.
+Ce tutoriel a pour objectif de comprendre l'utilisation des modèles dans l'application ``` Curiosities``` et de manipuler des objets dans un controleur et une vue, dans le cadre du cycle 1 des ateliers Women On Rails.
 
 # Étape 1 : Rappels
 
