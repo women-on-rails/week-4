@@ -160,9 +160,9 @@ Nous allons maintenant quitter la console Rails. Pour cela, tapez "exit" dans la
 
 ### Affichage des curiosités dans l'application
 
-Ouvrez le controleur ```app/controllers/home_controller.rb```. Il y a la méthode index qui correspond à vue index.html.erb affichant votre page d'accueil.
+Ouvrez le controleur ```app/controllers/home_controller.rb```. Il y a la méthode ```index``` qui correspond à la vue ```app/views/home/index.html.erb``` affichant votre page d'accueil.
 
-Dans cette méthode, vous allez récupérer toutes les curiosités stockées en base de donnée avec le modèle ```Curiosity```:
+Dans cette méthode, vous allez récupérer toutes les curiosités stockées en base de donnée avec le modèle ```Curiosity``` en remplaçant le code existant par :
 
 ```Ruby
 @my_curiosities = Curiosity.all
