@@ -327,3 +327,7 @@ Aidez-vous de la page 'Validations' du guide Ruby On Rails (http://guides.rubyon
 - Comparaison entre Sqlite, MySql et Postgres (EN) : https://www.digitalocean.com/community/tutorials/sqlite-vs-mysql-vs-postgresql-a-comparison-of-relational-database-management-systems
 - Les migrations (EN) : http://guides.rubyonrails.org/active_record_migrations.html
 - Les validations (EN) : http://guides.rubyonrails.org/active_record_validations.html
+
+# Et ensuite ?
+
+Venez comprendre comment manipuler des objets dans le controleur et passer les données de ces objets à des vues (vue d'une curiosité et destruction) grace au tutoriel [Week-5](https://github.com/women-on-rails/week-5)
